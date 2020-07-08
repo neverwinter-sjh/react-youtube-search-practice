@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { htmlDecode } from '../utils/String';
 
 const VideoListItem = ({video, onVideoSelect}) => {  
   const imageUrl = video.snippet.thumbnails.default.url;
-  let title = escape(video.snippet.title);  
-  title = unescape(title);
+  const title = htmlDecode(video.snippet.title);  
 
   return (
     <li className="list-group-item" onClick={() => onVideoSelect(video)} style={{'cursor': 'pointer'}}>
@@ -12,7 +12,7 @@ const VideoListItem = ({video, onVideoSelect}) => {
           <img className="media-object" src={imageUrl} />
         </div>
         <div className="media-body">
-          <div className="media-heading">{unescape(video.snippet.title)}</div>
+          <div className="media-heading">{title}</div>
         </div>
       </div>
     </li>

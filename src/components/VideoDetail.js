@@ -1,14 +1,13 @@
 import React from 'react';
+import { htmlDecode } from '../utils/String';
 
 const VideoDetail = ({video, term}) => {
   if (!video) return <div>Loading...</div>;
 
   const videoId = video.id.videoId;
   const url = `https://www.youtube.com/embed/${videoId}`;
-  let title = escape(video.snippet.title);  
-  let description = escape(video.snippet.description);  
-  title = unescape(title);
-  description = unescape(description);
+  const title = htmlDecode(video.snippet.title);  
+  const description = htmlDecode(video.snippet.description); 
 
   return (
     <div className="video-detail col-md-8">

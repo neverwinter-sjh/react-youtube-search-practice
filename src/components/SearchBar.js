@@ -11,15 +11,21 @@ class SearchBar extends Component {
     this.setState({ term: event.target.value });
   };
 
-  searchVideo = () => {
-    this.props.searchVideo(this.state.term);
+  handleKeyPress = event => {
+    if (event.charCode == 13) {
+      this.videoSearch();
+    }
+  };
+
+  videoSearch = () => {
+    this.props.videoSearch(this.state.term);
   };
 
   render() {
     return (
       <div className="search-bar">
-        <input value={this.state.term} onChange={this.handleInputChange} />
-        <button type="button" onClick={this.searchVideo}>Search</button>
+        <input value={this.state.term} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} />
+        <button type="button" onClick={this.videoSearch}>Search</button>
       </div>
     );
   }
